@@ -123,9 +123,25 @@ function gameLoop() {
   io.sockets.emit('state', { players: Object.values(players), debris });
 }
 
-spawnDebris();
-setInterval(gameLoop, TICK_RATE);
+function init() {
+  spawnDebris();
+  setInterval(gameLoop, TICK_RATE);
+  return http.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
 
-http.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  init();
+}
+
+module.exports = {
+  app,
+  init,
+  randomName,
+  randomColor,
+  getRadius,
+  spawnPlayer,
+  distance,
+  WORLD_SIZE
+};

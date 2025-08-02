@@ -28,4 +28,8 @@ class TornadoPlayer {
   }
 }
 
-window.TornadoPlayer = TornadoPlayer;
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = TornadoPlayer;
+} else {
+  window.TornadoPlayer = TornadoPlayer;
+}
