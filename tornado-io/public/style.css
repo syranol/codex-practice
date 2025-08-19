@@ -4,7 +4,7 @@ html, body {
   overflow: hidden;
   height: 100%;
   touch-action: none;
-  background: #f0f8ff;
+  background: linear-gradient(#f0f8ff, #d0e7ff);
 }
 
 canvas {
