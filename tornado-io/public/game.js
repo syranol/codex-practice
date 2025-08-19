@@ -46,10 +46,15 @@ function draw() {
     debris.forEach(d => {
       const x = d.x - camera.x + canvas.width / 2;
       const y = d.y - camera.y + canvas.height / 2;
+      ctx.save();
       ctx.fillStyle = '#888';
       ctx.beginPath();
       ctx.arc(x, y, 3, 0, Math.PI * 2);
       ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#555';
+      ctx.stroke();
+      ctx.restore();
     });
 
     Object.values(players).forEach(p => {

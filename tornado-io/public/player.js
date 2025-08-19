@@ -17,10 +17,29 @@ class TornadoPlayer {
   render(ctx, camera, canvas) {
     const x = this.x - camera.x + canvas.width / 2;
     const y = this.y - camera.y + canvas.height / 2;
-    ctx.fillStyle = this.color;
+
+    ctx.save();
+    const gradient = ctx.createRadialGradient(
+      x - this.radius / 3,
+      y - this.radius / 3,
+      this.radius / 10,
+      x,
+      y,
+      this.radius
+    );
+    gradient.addColorStop(0, '#fff');
+    gradient.addColorStop(1, this.color);
+    ctx.fillStyle = gradient;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 8;
     ctx.beginPath();
     ctx.arc(x, y, this.radius, 0, Math.PI * 2);
     ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+    ctx.stroke();
+    ctx.restore();
+
     ctx.fillStyle = '#000';
     ctx.font = '16px sans-serif';
     ctx.textAlign = 'center';
